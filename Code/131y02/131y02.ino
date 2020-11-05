@@ -29,7 +29,8 @@ char ver[ ] = "131y02";
 #define mypowerpin 16 // Порт показометра мощности. А0
 #define mybattpin 14 // Порт датчика АКБ А1
 #define txpin 17 //Порт датчика ТХ.
-
+#define tonepin 9 //Порт тонального сигнала
+#define tonefreq 1000 // Частота тонального сигнала
 
 byte menu = 0; //Начальное положение меню.
 byte arraystp[] = {1, 10, 50, 100}; //шаги настройки * 10 герц.
@@ -97,6 +98,7 @@ void setup() {
   Serial.begin(57600);
   pinMode(myEncBtn, INPUT);
   pinMode(mypowerpin, INPUT);
+  pinMode(tonepin, OUTPUT);
   digitalWrite(myEncBtn, HIGH);
   analogReference(INTERNAL);
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
@@ -113,6 +115,7 @@ void setup() {
   timenow ();
   versionprint ();
   mainscreen();
+  tone(tonepin,tonefreq);
 }
 
 void loop() { // Главный цикл
@@ -511,4 +514,8 @@ void versionprint() {
   display.println(ver);
   display.display();
   delay(1000);
+}
+
+void tonegen() {
+  
 }
