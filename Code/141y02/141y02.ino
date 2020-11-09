@@ -230,7 +230,7 @@ void pushknob () {  // Обработка нажатия на кноб
         if (menu == 5) menu = 0; //Если меню 5 выйти на главный экран
         if (menu > 14) menu = 5; //Если меню больше 14 перейти на меню 5
       }
-	  if (!max_number_of_bands && menu == 1) menu++;
+	  if (!number_of_bands && menu == 1) menu++;
     }
     mainscreen();
   }
