@@ -73,7 +73,7 @@ unsigned int arraystp[] = {1, 10, 50, 100, 1000}; //шаги настройки 
 
 byte mypower;
 byte mybatt;
-byte temperature;
+int8_t temperature;
 int screenstep = 1000;
 
 long oldPosition  = 0;
@@ -172,7 +172,7 @@ void tempsensor () {
     reqtemp = true;
   }
   if (millis() - previoustemp > 8000 && reqtemp) {
-    temperature = (byte)(0.5 + sensors.getTempCByIndex(0));
+    temperature = (int8_t)(0.5 + sensors.getTempCByIndex(0));
     previoustemp = millis();
     reqtemp = false;
   }
@@ -425,6 +425,13 @@ void mainscreen() { //Процедура рисования главного э�
         display.print(temperature);
         display.print((char)247);
         display.print("C ");
+		
+		if (actencf) {
+          display.print(" ");
+        }
+        else {
+          display.print(".");
+        }
 
         if (tm.Hour < 10) display.print(" ");
         display.print(tm.Hour);
